@@ -143,7 +143,18 @@ public int helper(Node head , int key){
 public int recursivesearch(int key){
    return helper(head, key);
 }
-
+public void reversell(){
+    Node prev = null;
+    Node curr = tail = head;
+    Node next;
+    while(curr!=null){
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
+}
 
 
 
@@ -162,14 +173,16 @@ public static void main(String args[]){
         //ll.print();
         ll.add(2,3);
         ll.print();
-        System.out.println("size is " + ll.size);
-        ll.removefirst();
-        ll.print();
-        System.out.println("size is " + ll.size);
-        ll.removelast();
-        ll.print();
-        System.out.println("size is " + ll.size);
+        //System.out.println("size is " + ll.size);
+        //ll.removefirst();
+        //ll.print();
+        //System.out.println("size is " + ll.size);
+        //ll.removelast();
+        //ll.print();
+       // System.out.println("size is " + ll.size);
         //System.out.println("index is " + ll.iterativesearch(4));
-        System.out.println("index is " + ll.recursivesearch(10));
+        //System.out.println("index is " + ll.recursivesearch(10));
+        ll.reversell();
+        ll.print();
 }
 }

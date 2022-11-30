@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.zip.CheckedInputStream;
 
 public class linkedlist1 {
     class  Node{
@@ -156,23 +157,82 @@ public void reversell(){
     head = prev;
 }
 
+public void deletenthfromend(int n){
+    Node prev = head;
+    int sz = 0;
+    Node temp = head;
+    while(temp!=null){
+        temp = temp.next;
+        sz++;
+    }
+    if(n==sz){
+        head = head.next;
+        return;
+    }
+    int i=1;
+    int itofind = sz-n;
+    while(i<itofind){
+        prev = prev.next;
+        i++;
+    }
+    prev.next = prev.next.next;
+    return;
+}
+public Node findmid(Node head){
+    Node slow=head;
+    Node fast= head; 
+    while(fast!=null && fast.next!=null){
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+public  boolean checkpalindrome(){
+    if(head == null || head.next == null){
+        return true;
+    }
+    //find middle
+    Node mid = findmid(head);
+    //reverse 2nd half
+    Node curr = mid;
+    Node prev = null;
+    Node next;
+    while(curr!=null){
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    Node right = prev;
+    Node left = head;
+
+    //check if equal
+    while(right!=null){
+        if(left.data != right.data){
+            return false;
+        }
+        left = left.next;
+        right = right.next;
+    }
+    return true;
 
 
+}
 
 
 public static void main(String args[]){
         linkedlist1 ll = new linkedlist1();
         //ll.print();
-        ll.addfirst(2);
+       // ll.addfirst(2);
         //ll.print();
-        ll.addfirst(1);
+        //ll.addfirst(1);
         //ll.print();
-        ll.lastadd(4);
+       // ll.lastadd(4);
         //ll.print();
-        ll.lastadd(5);
+        //ll.lastadd(5);
         //ll.print();
-        ll.add(2,3);
-        ll.print();
+        //ll.add(2,3);
+        //ll.print();
         //System.out.println("size is " + ll.size);
         //ll.removefirst();
         //ll.print();
@@ -182,7 +242,16 @@ public static void main(String args[]){
        // System.out.println("size is " + ll.size);
         //System.out.println("index is " + ll.iterativesearch(4));
         //System.out.println("index is " + ll.recursivesearch(10));
-        ll.reversell();
+        //ll.reversell();
+        //ll.print();
+        //ll.deletenthfromend(3);
+        //ll.print();
+
+        ll.addfirst(1);
+        ll.addfirst(2);
+        ll.addfirst(2);
+        ll.addfirst(1);
         ll.print();
+        System.out.println(ll.checkpalindrome());
 }
 }

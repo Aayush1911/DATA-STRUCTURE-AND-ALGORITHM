@@ -229,7 +229,33 @@ public class linkedlist1 {
         }
         return false;
     }
-
+    public static void removecycle(){
+        //detect cycle
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = head.next;
+            fast = head.next.next;
+            boolean cycle = false;
+            if (slow == fast) {
+                cycle = true;
+                break;
+            }
+        }
+            if(cycle == false){
+                return;
+            }
+        //find meeting point 
+            slow = head;
+            Node prev = null;
+            while(fast!=slow){
+                prev = fast;
+                slow = slow.next;
+                fast = fast.next;
+            }
+        //remove cycle - last.next = prev
+        prev.next = null;
+    }
     public static void main(String args[]) {
         /*
          * // linkedlist1 ll = new linkedlist1();
@@ -270,6 +296,7 @@ public class linkedlist1 {
         head.next.next = new Node(3);
         head.next.next.next = head;
         System.out.println(iscycle());
+        
 
     }
 }

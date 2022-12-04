@@ -1,1 +1,3 @@
-str
+ if(s.isEmpty()){
+            return;
+        }

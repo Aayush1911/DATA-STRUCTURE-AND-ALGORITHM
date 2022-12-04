@@ -96,10 +96,30 @@ public class stack {
             result.append(curr);
         }
         return result.toString();
-
-
     }
       
+    public static void reversestack(Stack<Integer>s){
+        if(s.isEmpty()){
+            return;
+        }
+        int top = s.pop();
+        reversestack(s);
+        pushatbottom(s, top);
+    }
+    public static void printstack(Stack<Integer>s){
+        while(!s.isEmpty()){
+            System.out.println(s.pop());
+        }
+    }
+
+
+
+
+
+
+
+
+
      @SuppressWarnings("unchecked")
     public static void main(String args[]){
        // Stack s = new Stack();
@@ -119,8 +139,16 @@ public class stack {
         while(!s1.isEmpty()){
             System.out.println(s1.pop());
         }*/
-        String str = "helloworld!";
-        System.out.println(reversestring(str));
+        // String str = "helloworld!";
+        // System.out.println(reversestring(str));
+
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        //3,2,1
+        reversestack(s);
+        printstack(s);
        
 
 

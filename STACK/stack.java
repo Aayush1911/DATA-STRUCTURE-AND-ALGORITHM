@@ -1,5 +1,6 @@
 import java.util.*;
 public class stack {
+    //IMPLEMENTING STACK BY ARRAYLIST
    /*  static class stack1{
         static ArrayList<Integer>list = new ArrayList<>();
         public static boolean isEmpty(){
@@ -27,6 +28,8 @@ public class stack {
         }
     }
     */
+    //IMPLEMENTING STACK BY LINKED LIST
+    /* 
     static class Node{
         int data;
         Node next;
@@ -69,19 +72,56 @@ public class stack {
         return head.data;
     }
     }
-   
-    
+   */
+    public static void pushatbottom(Stack<Integer>s1 , int data){
+        if(s1.isEmpty()){
+            s1.push(data);
+            return;
+        }
+        int top = s1.pop();
+        pushatbottom(s1, data);
+        s1.push(top);
+    }
+
+    public static String reversestring(String str){
+        Stack<Character>s = new Stack<>();
+        int i=0;
+        while(i<str.length()){
+            s.push(str.charAt(i));
+            i++;
+        }
+        StringBuilder result = new StringBuilder();
+        while(!s.isEmpty()){
+            char curr = s.pop();
+            result.append(curr);
+        }
+        return result.toString();
+
+
+    }
       
      @SuppressWarnings("unchecked")
     public static void main(String args[]){
-        Stack s = new Stack();
+       // Stack s = new Stack();
+       /*Stack<Integer>s = new Stack<>();
         s.push(1);
         s.push(2);
         s.push(3);
         while(!s.isEmpty()){    
             System.out.println(s.peek());
             s.pop();
-        }
+        }*/
+        /*Stack<Integer>s1 = new Stack<>();
+        s1.push(1);
+        s1.push(2);
+        s1.push(3);
+        pushatbottom(s1, 4);
+        while(!s1.isEmpty()){
+            System.out.println(s1.pop());
+        }*/
+        String str = "helloworld!";
+        System.out.println(reversestring(str));
+       
 
 
     }

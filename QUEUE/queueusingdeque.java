@@ -1,6 +1,7 @@
 import java.util.*;
 public class queueusingdeque {
-    static class queue{
+    static
+     class queue{
         Deque<Integer>deque = new LinkedList<>();
 
         public void add(int data){

@@ -10,6 +10,7 @@ public class indiancoins {
             while(coins[i]<=amount){
                 countofcoin++;
                 ans.add(coins[i]);
+                
                 amount -= coins[i];
             }
         }

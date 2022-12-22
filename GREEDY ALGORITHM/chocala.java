@@ -17,13 +17,11 @@ public class chocala {
                 cost+= (costhor[h]*vp);
                 hp++;
                 h++;
-               
             }
             else{
                 cost+=(costver[v]*hp);
                 vp++;
                 v++;
-               
             }
 
         }

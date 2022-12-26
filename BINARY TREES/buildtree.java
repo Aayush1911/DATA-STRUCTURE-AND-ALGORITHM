@@ -134,6 +134,48 @@ public static info diameter2(Node root) {
     int h = Math.max(leftinfo.h, rightinfo.h)+1;
     return new info(diam, h);
 }
+//to check for identical
+public static boolean isidentical(Node node,Node subroot){
+    if(node==null && subroot == null){
+        return true;
+    }
+    else if (node == null || subroot == null || node.data != subroot.data){
+        return false;
+    }
+    if(!isidentical(node.left, subroot.left)){
+        return false;
+    }
+    if(!isidentical(node.right, subroot.right)){
+        return false;
+    }
+    return true;
+}
+
+
+//where subrot lies in main tree
+public static boolean issubtree(Node root,Node subroot){
+     if(root == null){
+        return false;
+     }
+     if(root.data == subroot.data){
+        if(isidentical(root,subroot)){
+            return true;
+        }
+     }
+     return issubtree(root.left, subroot) || issubtree(root.right, subroot) ;
+
+
+}
+
+
+
+
+
+
+
+
+
+
 }
     public static void main(String args[]){
         int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -153,7 +195,19 @@ public static info diameter2(Node root) {
        // System.out.println("count =" + tree.count(root));
        //System.out.println("sum of nodes =" + tree.nodesum(root));
         //System.out.println(tree.diameter1(root));
-        System.out.println(tree.diameter2(root).diam);
+        //System.out.println(tree.diameter2(root).diam); 
+
+/*
+                     2
+                    /  \
+                   4    5
+                   
+                   */
+        Node subroot = new Node(2);
+        subroot.left = new Node(4);
+        subroot.right=new Node(5);
+        System.out.println(tree.issubtree(root, subroot));
+
 
 
 

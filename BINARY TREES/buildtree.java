@@ -44,7 +44,7 @@ public static void inorder(Node root){
     inorder(root.right);
 }
 public static void postorder(Node root){
-    if(root==null){
+    if(root==null){ 
         return;
     }
     inorder(root.left);
@@ -167,8 +167,54 @@ public static boolean issubtree(Node root,Node subroot){
 
 }
 
+static class info1{
+    int hd;
+    Node node;
 
+    public info1(Node node ,int hd){
+        this.node=node;
+        this.hd=hd;
+        
+    }
+}
+public static void topview(Node root){
+    Queue<info1>q1 = new LinkedList<>();
+    HashMap<Integer , Node>map = new HashMap<>();
+    int min=0,max=0;
+    q1.add(new info1(root,0));
+    q1.add(null);
+    while(!q1.isEmpty()){
+        info1 curr = q1.remove();
+        if(curr==null){
+            if(q1.isEmpty()){
+                break;
+            }
+            else{
+                q1.add(null);
+            }
+        } 
+        else{
+            if(!map.containsKey(curr.hd)){//first time hd is occuring
+                map.put(curr.hd, curr.node);
+            }
 
+            if(curr.node.left != null){
+                q1.add(new info1( curr.node.left,curr.hd-1));
+                min = Math.min(min, curr.hd-1);
+            }
+
+            if(curr.node.right!= null){
+                q1.add(new info1(curr.node.right,curr.hd+1));
+                max = Math.max(max, curr.hd+1);
+            }
+        }
+        
+
+    }
+for(int i=min;i<=max;i++){
+    System.out.print(map.get(i).data +" ");
+}
+}
 
 
 
@@ -178,14 +224,27 @@ public static boolean issubtree(Node root,Node subroot){
 
 }
     public static void main(String args[]){
-        int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        //int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
             /*           1
                         / \
                        2   3 
                       / \   \
-                     4   5   6   */           
+                     4   5   6   */        
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
         binarytree tree = new binarytree();
-        Node root=tree.buildtree(nodes);
+        /*            1
+                     / \
+                    2   3
+                   / \ / \
+                  4  5 6  7           
+        */
+        //Node root=tree.buildtree(nodes);
         //System.out.println("root is " + root.data);
        // tree.preorder(root);
        //tree.inorder(root);
@@ -203,10 +262,12 @@ public static boolean issubtree(Node root,Node subroot){
                    4    5
                    
                    */
-        Node subroot = new Node(2);
+       /*  Node subroot = new Node(2);
         subroot.left = new Node(4);
         subroot.right=new Node(5);
-        System.out.println(tree.issubtree(root, subroot));
+       // System.out.println(tree.issubtree(root, subroot));
+*/
+       tree.topview(root);
 
 
 
